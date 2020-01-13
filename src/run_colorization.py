@@ -1,4 +1,4 @@
-""" classification demo params check module"""
+""" colorization demo params check module"""
 # !/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 #
@@ -38,11 +38,11 @@ import os
 import sys
 
 MODEL_PATH = '${MODEL_PATH}'
-offlineModelPath = '/home/HwHiAiUser/HIAI_DATANDMODELSET/ascend_workspace/colorization.om'
+offlineModelPath = '/home/HwHiAiUser/HIAI_DATANDMODELSET/workspace_mind_studio/colorization.om'
 GRAPH_TEMPLATE_FILE = 'graph.template'
 GRAPH_CONFIG_FILE = 'graph.config'
 
-CPP_EXE = './ascend_colorization'
+CPP_EXE = './workspace_mind_studio_sample-colorization'
 CONCOLE_LIST = ' {} {}'
 
 
@@ -101,26 +101,11 @@ def assemble_console_params(args):
     return console_params
 
 
-def generate_graph(offlineModelPath):
-    """generate graph config files base on template.
-    :param offlineModelPath: davinci offline model path.
-    """
-    if not os.path.isfile(GRAPH_TEMPLATE_FILE):
-        eprint('[ERROR] graph template file does not exist.')
-        exit()
-    with open(GRAPH_TEMPLATE_FILE, 'r') as template_file:
-        contents = template_file.read()
-        contents = contents.replace(MODEL_PATH, offlineModelPath)
-    with open(GRAPH_CONFIG_FILE, 'w') as config_file:
-        config_file.write(contents)
-
-
 def main():
     """main function to receive console params then call cpp program.
     """
     args = get_args()
     if validate_args(args):
-        generate_graph(os.path.realpath(offlineModelPath))
         if os.path.exists(CPP_EXE):
             console_params = assemble_console_params(args)
             print(console_params)

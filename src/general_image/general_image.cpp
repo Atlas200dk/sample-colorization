@@ -43,6 +43,8 @@
 
 #include "hiaiengine/log.h"
 #include "opencv2/opencv.hpp"
+#include "opencv2/imgcodecs/legacy/constants_c.h"
+#include "opencv2/imgproc/types_c.h"
 #include "tool_api.h"
 
 using hiai::Engine;
@@ -69,8 +71,8 @@ const int kModelParameterWidth = 224;
 }
 
 // register custom data type
-HIAI_REGISTER_DATA_TYPE("ConsoleParams", ConsoleParams);
-HIAI_REGISTER_DATA_TYPE("EngineTrans", EngineTrans);
+//HIAI_REGISTER_DATA_TYPE("ConsoleParams", ConsoleParams);
+//HIAI_REGISTER_DATA_TYPE("EngineTrans", EngineTrans);
 
 HIAI_StatusT GeneralImage::Init(
     const hiai::AIConfig& config,
