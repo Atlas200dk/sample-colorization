@@ -17,11 +17,11 @@
 
 1.  <a name="li953280133816"></a>获取源码包。
 
-    将[https://gitee.com/Atlas200DK/sample-colorization/tree/1.3x.0.0/](https://gitee.com/Atlas200DK/sample-colorization/tree/1.3x.0.0/)仓中的代码以Mind Studio安装用户下载至Mind Studio所在Ubuntu服务器的任意目录，这两个文件必须存放到同一个目录下。例如代码存放路径为：_$HOME/AscendProjects/sample-colorization_。
+    将[https://gitee.com/Atlas200DK/sample-colorization/tree/1.3x.0.0/](https://gitee.com/Atlas200DK/sample-colorization/tree/1.3x.0.0/)仓中的代码以Mind Studio安装用户下载至Mind Studio所在Ubuntu服务器的任意目录，这两个文件必须存放到同一个目录下。例如代码存放路径为：$HOME/AscendProjects/sample-colorization。
 
 2.  <a name="li2074865610364"></a>获取此应用中所需要的原始网络模型。
 
-    参考[表 黑白图像上色应用使用模型](#table19942111763710)获取此应用中所用到的原始网络模型及其对应的权重文件，并将其存放到Mind Studio所在Ubuntu服务器的任意目录，这两个文件必须存放到同一个目录下。例如_$HOME/models/colorization_。
+    参考[表 黑白图像上色应用使用模型](#table19942111763710)获取此应用中所用到的原始网络模型及其对应的权重文件，并将其存放到Mind Studio所在Ubuntu服务器的任意目录，这两个文件必须存放到同一个目录下。例如：$HOME/models/colorization。
 
     **表 1**  黑白图像上色应用使用模型
 
@@ -78,7 +78,7 @@
 
         **export tools\_version=_1.31.X.X_**
 
-        **export DDK\_HOME=$HOME/.mindstudio/huawei/ddk/$tools\_version/ddk**
+        **export DDK\_HOME=\\$HOME/.mindstudio/huawei/ddk/\\$tools\_version/ddk**
 
         **export NPU\_DEVICE\_LIB=$DDK\_HOME/../RC/host-aarch64\_Ubuntu16.04.3/lib**
 
@@ -112,7 +112,7 @@
 
     3.  单击Finish开始转换模型。
 
-        模型转换成功后，后缀为.om的离线模型存放地址为_$HOME/modelzoo/colorization__/device_。
+        模型转换成功后，后缀为.om的离线模型存放地址为：$HOME/modelzoo/colorization/device。
 
         >![](public_sys-resources/icon-note.gif) **说明：**   
         >Mindstudio模型转换中每一步的具体意义和参数说明可以参考[Mind Studio用户手册](https://ascend.huawei.com/doc/mindstudio/)中的“模型转换“章节。  
