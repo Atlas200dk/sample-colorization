@@ -17,11 +17,11 @@
 
 1.  <a name="zh-cn_topic_0219383618_li953280133816"></a>获取源码包。
 
-    将[https://gitee.com/Atlas200DK/sample-colorization](https://gitee.com/Atlas200DK/sample-colorization)仓中的代码以Mind Studio安装用户下载至Mind Studio所在Ubuntu服务器的任意目录，例如代码存放路径为：_/home/ascend/sample-colorization_。
+    将[https://gitee.com/Atlas200DK/sample-colorization](https://gitee.com/Atlas200DK/sample-colorization)仓中的代码以Mind Studio安装用户下载至Mind Studio所在Ubuntu服务器的任意目录，例如代码存放路径为：$HOME/sample-colorization。
 
 2.  <a name="zh-cn_topic_0219383618_li29641938112018"></a>获取此应用中所需要的原始网络模型。
 
-    参考[表 黑白图像上色应用使用模型](#zh-cn_topic_0219383618_table1119094515272)获取此应用中所用到的原始网络模型及其对应的权重文件，并将其存放到Mind Studio所在Ubuntu服务器的任意目录，例如$HOME/ascend/models/colorization。
+    参考[表 黑白图像上色应用使用模型](#zh-cn_topic_0219383618_table1119094515272)获取此应用中所用到的原始网络模型及其对应的权重文件，并将其存放到Mind Studio所在Ubuntu服务器的任意目录，例如：$HOME/ascend/models/colorization。
 
     **表 1**  黑白图像上色应用使用模型
 
@@ -56,7 +56,7 @@
 
     3.  单击OK开始转换模型。
 
-        模型转换成功后，后缀为.om的离线模型存放地址为$HOME/tools/che/model-zoo/my-model/colorization。
+        模型转换成功后，后缀为.om的离线模型存放地址为：$HOME/tools/che/model-zoo/my-model/colorization。
 
     4.  将转换好的模型文件（colorization.om）上传到[步骤1](#zh-cn_topic_0219383618_li953280133816)中源码所在路径的“sample-colorization/script”目录下。
 
@@ -66,12 +66,11 @@
 
     执行如下命令在最后一行添加DDK\_HOME及LD\_LIBRARY\_PATH的环境变量。
 
-    **export DDK\_HOME=/home/XXX/tools/che/ddk/ddk**
+    **export DDK\_HOME=$HOME/tools/che/ddk/ddk**
 
     **export LD\_LIBRARY\_PATH=$DDK\_HOME/uihost/lib**
 
-    >![](public_sys-resources/icon-note.gif) **说明：**   
-    >-   XXX为Mind Studio安装用户，/home/XXX/tools为DDK默认安装路径。  
+    >![](public_sys-resources/icon-note.gif) **说明：**     
     >-   如果此环境变量已经添加，则此步骤可跳过。  
 
     输入:wq!保存退出。
@@ -83,7 +82,7 @@
 
 ## 部署<a name="zh-cn_topic_0219383618_section18931344873"></a>
 
-1.  以Mind Studio安装用户进入通用分类网络应用代码所在根目录，如_/home/ascend/sample-colorization_。
+1.  以Mind Studio安装用户进入通用分类网络应用代码所在根目录，如：$HOME/sample-colorization。
 2.  执行部署脚本，进行工程环境准备，包括公共库的编译与部署、应用的编译与部署等操作。
 
     **bash deploy.sh  _host\_ip_**
@@ -124,7 +123,7 @@
 
 ## 依赖代码库下载<a name="zh-cn_topic_0219383618_section92241245122511"></a>
 
-将依赖的软件库下载到“sample-classification/script“目录下。
+将依赖的软件库下载到“sample-colorization/script“目录下。
 
 **表 2**  依赖代码库下载
 
