@@ -1,3 +1,5 @@
+中文|[English](Readme_EN.md)
+
 # 黑白图像上色<a name="ZH-CN_TOPIC_0228461725"></a>
 
 本应用支持运行在Atlas 200 DK上，实现了对黑白图像自动上色的功能。
