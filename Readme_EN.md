@@ -23,7 +23,7 @@ You can use either of the following methods:
     >-   The quick deployment script can be used to deploy multiple samples rapidly. Select  **colorization**.  
     >-   The quick deployment script automatically completes code download, model conversion, and environment variable configuration. To learn about the detailed deployment process, go to  **[2. Common deployment](#li3208251440)**.  
 
-2.  <a name="li3208251440"></a>Common deployment: visit  [https://gitee.com/Atlas200DK/sample-READEME/tree/master/sample-colorization](https://gitee.com/Atlas200DK/sample-READEME/tree/master/sample-colorization).
+2.  <a name="li3208251440"></a>Common deployment: visit  [https://gitee.com/Atlas200DK/sample-README/tree/master/sample-colorization](https://gitee.com/Atlas200DK/sample-README/tree/master/sample-colorization).
 
     >![](public_sys-resources/icon-note.gif) **NOTE:**   
     >-   In this deployment mode, you need to manually download code, convert models, and configure environment variables.  
