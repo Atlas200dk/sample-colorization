@@ -1,149 +1,115 @@
-# 黑白图像上色（C++）<a name="ZH-CN_TOPIC_0220070534"></a>
+中文|[English](Readme.md)
 
-本Application支持运行在Atlas 200 DK上，实现了把黑白图像自动上色为彩色图像的效果。
+# 黑白图像上色<a name="ZH-CN_TOPIC_0232337711"></a>
 
-当前分支中的应用适配**1.1.1.0**与**1.3.0.0**版本的[DDK&RunTime](https://ascend.huawei.com/resources)。
+本应用支持运行在Atlas 200 DK上，实现了对黑白图像自动上色的功能。
 
-## 前提条件<a name="zh-cn_topic_0219383618_section137245294533"></a>
+当前分支中的应用适配**1.32.0.0及以上**版本的[DDK&RunTime](https://ascend.huawei.com/resources)。
+
+## 前提条件<a name="zh-cn_topic_0228461725_section137245294533"></a>
 
 部署此Sample前，需要准备好以下环境：
 
 -   已完成Mind Studio的安装。
 -   已完成Atlas 200 DK开发者板与Mind Studio的连接，交叉编译器的安装，SD卡的制作及基本信息的配置等。
 
-## 软件准备<a name="zh-cn_topic_0219383618_section181111827718"></a>
+## 部署<a name="zh-cn_topic_0228461725_section412811285117"></a>
 
-运行此Sample前，需要按照此章节获取源码包、准备模型文件并进行相关的环境配置。
+可以选择如下快速部署或者常规方法部署，二选一即可：
 
-1.  <a name="zh-cn_topic_0219383618_li953280133816"></a>获取源码包。
+1.  快速部署，请参考：  [https://github.com/Atlas200dk/faster-deploy](https://github.com/Atlas200dk/faster-deploy)  。
 
-    将[https://github.com/Atlas200dk/sample-colorization](https://github.com/Atlas200dk/sample-colorization)仓中的代码以Mind Studio安装用户下载至Mind Studio所在Ubuntu服务器的任意目录，例如代码存放路径为：$HOME/sample-colorization。
+    >![](public_sys-resources/icon-note.gif) **说明：**   
+    >-   该快速部署脚本可以快速部署多个案例，请选择**colorization**案例部署即可。  
+    >-   该快速部署脚本自动完成了代码下载、模型转换、环境变量配置等流程，如果需要了解详细的部署过程请选择常规部署方式。转：**[2. 常规部署](#zh-cn_topic_0228461725_li3208251440)**  
 
-2.  <a name="zh-cn_topic_0219383618_li29641938112018"></a>获取此应用中所需要的原始网络模型。
+2.  <a name="zh-cn_topic_0228461725_li3208251440"></a>常规部署，请参考：  [https://github.com/Atlas200dk/sample-README/tree/master/sample-colorization](https://github.com/Atlas200dk/sample-README/tree/master/sample-colorization)  。
 
-    参考[表 黑白图像上色应用使用模型](#zh-cn_topic_0219383618_table1119094515272)获取此应用中所用到的原始网络模型及其对应的权重文件，并将其存放到Mind Studio所在Ubuntu服务器的任意目录，例如：$HOME/ascend/models/colorization。
-
-    **表 1**  黑白图像上色应用使用模型
-
-    <a name="zh-cn_topic_0219383618_table1119094515272"></a>
-    <table><thead align="left"><tr id="zh-cn_topic_0219383618_row677354502719"><th class="cellrowborder" valign="top" width="12.85%" id="mcps1.2.4.1.1"><p id="zh-cn_topic_0219383618_p167731845122717"><a name="zh-cn_topic_0219383618_p167731845122717"></a><a name="zh-cn_topic_0219383618_p167731845122717"></a>模型名称</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="12.57%" id="mcps1.2.4.1.2"><p id="zh-cn_topic_0219383618_p277317459276"><a name="zh-cn_topic_0219383618_p277317459276"></a><a name="zh-cn_topic_0219383618_p277317459276"></a>模型说明</p>
-    </th>
-    <th class="cellrowborder" valign="top" width="74.58%" id="mcps1.2.4.1.3"><p id="zh-cn_topic_0219383618_p9773114512270"><a name="zh-cn_topic_0219383618_p9773114512270"></a><a name="zh-cn_topic_0219383618_p9773114512270"></a>模型下载路径</p>
-    </th>
-    </tr>
-    </thead>
-    <tbody><tr id="zh-cn_topic_0219383618_row3122314144215"><td class="cellrowborder" valign="top" width="12.85%" headers="mcps1.2.4.1.1 "><p id="zh-cn_topic_0219383618_p3968437141519"><a name="zh-cn_topic_0219383618_p3968437141519"></a><a name="zh-cn_topic_0219383618_p3968437141519"></a><span>colorization</span></p>
-    </td>
-    <td class="cellrowborder" valign="top" width="12.57%" headers="mcps1.2.4.1.2 "><p id="zh-cn_topic_0219383618_p86191184712"><a name="zh-cn_topic_0219383618_p86191184712"></a><a name="zh-cn_topic_0219383618_p86191184712"></a>黑白图像上色模型</p>
-    </td>
-    <td class="cellrowborder" valign="top" width="74.58%" headers="mcps1.2.4.1.3 "><p id="zh-cn_topic_0219383618_p611318163718"><a name="zh-cn_topic_0219383618_p611318163718"></a><a name="zh-cn_topic_0219383618_p611318163718"></a>请参考<a href="https://github.com/Ascend-Huawei/models/tree/master/computer_vision/object_detect/colorization" target="_blank" rel="noopener noreferrer">https://github.com/Ascend-Huawei/models/tree/master/computer_vision/object_detect/colorization</a>目录中README.md下载原始网络模型文件及其对应的权重文件。</p>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
-3.  将原始网络模型转换为适配昇腾AI处理器的模型。
-    1.  在Mind Studio操作界面的顶部菜单栏中选择“Tool \> Convert Model”，进入模型转换界面。
-    2.  在弹出的**Convert Model**操作界面中，Model File与Weight File分别选择[步骤2](#zh-cn_topic_0219383618_li29641938112018)中下载的模型文件和权重文件。
-        -   **Model Name**填写为[表1](#zh-cn_topic_0219383618_table1119094515272)中对应的**模型名称**。
-        -   Optional Options中的Input Image Preprocess关闭。
-        -   其他参数保持默认值。
-
-            **图 1**  配置示例<a name="zh-cn_topic_0219383618_fig95695336322"></a>  
-            ![](figures/配置示例.png "配置示例")
-
-    3.  单击OK开始转换模型。
-
-        模型转换成功后，后缀为.om的离线模型存放地址为：$HOME/tools/che/model-zoo/my-model/colorization。
-
-    4.  将转换好的模型文件（colorization.om）上传到[步骤1](#zh-cn_topic_0219383618_li953280133816)中源码所在路径的“sample-colorization/script”目录下。
-
-4.  以Mind Studio安装用户登录Mind Studio所在Ubuntu服务器，并设置环境变量DDK\_HOME。
-
-    **vim \~/.bashrc**
-
-    执行如下命令在最后一行添加DDK\_HOME及LD\_LIBRARY\_PATH的环境变量。
-
-    **export DDK\_HOME=$HOME/tools/che/ddk/ddk**
-
-    **export LD\_LIBRARY\_PATH=$DDK\_HOME/uihost/lib**
-
-    >![](public_sys-resources/icon-note.gif) **说明：**     
-    >-   如果此环境变量已经添加，则此步骤可跳过。  
-
-    输入:wq!保存退出。
-
-    执行如下命令使环境变量生效。
-
-    **source \~/.bashrc**
+    >![](public_sys-resources/icon-note.gif) **说明：**   
+    >-   该部署方式，需要手动完成代码下载、模型转换、环境变量配置等过程。完成后，会对其中的过程更加了解。  
 
 
-## 部署<a name="zh-cn_topic_0219383618_section18931344873"></a>
+## 编译<a name="zh-cn_topic_0228461725_section3723145213347"></a>
 
-1.  以Mind Studio安装用户进入通用分类网络应用代码所在根目录，如：$HOME/sample-colorization。
-2.  执行部署脚本，进行工程环境准备，包括公共库的编译与部署、应用的编译与部署等操作。
+1.  打开对应的工程。
 
-    **bash deploy.sh  _host\_ip_**
+    以Mind Studio安装用户在命令行中进入安装包解压后的“MindStudio-ubuntu/bin”目录，如：$HOME/MindStudio-ubuntu/bin。执行如下命令启动Mind Studio。
 
-    -   _host\_ip_：对于Atlas 200 DK开发者板，即为开发者板的IP地址。对于AI加速云服务器，即为Host的IP地址。
+    **./MindStudio.sh**
 
-    命令示例：
+    启动成功后，打开**sample\_colorization**工程，如[图 打开sample\_colorization工程](#zh-cn_topic_0228461725_zh-cn_topic_0219108795_fig05481157171918)所示。
 
-    **bash deploy.sh 192.168.1.2**
+    **图 1**  打开sample\_colorization工程<a name="zh-cn_topic_0228461725_zh-cn_topic_0219108795_fig05481157171918"></a>  
+    
 
-3.  将需要推理的图片上传至Host侧任一属组为HwHiAiUser用户的目录，例如“/home/HwHiAiUser/pics“。
+    ![](figures/zh-cn_image_0219108999.png)
 
-## 运行<a name="zh-cn_topic_0219383618_section372782554919"></a>
+2.  在**src/param\_configure.conf**文件中配置相关工程信息。
 
-1.  在Mind Studio所在Ubuntu服务器中，以HwHiAiUser用户SSH登录到Host侧。
+    **图 2**  配置文件路径<a name="zh-cn_topic_0228461725_zh-cn_topic_0219108795_fig0391184062214"></a>  
+    ![](figures/配置文件路径.png "配置文件路径")
+
+    该配置文件默认配置内容如下：
+
+    ```
+    remote_host=192.168.1.2
+    ```
+
+    remote\_host：Atlas 200 DK开发者板的IP地址。
+
+    >![](public_sys-resources/icon-note.gif) **说明：**   
+    >-   注意参数填写时不需要使用“”符号。  
+    >-   当前已经按照配置示例配置默认值，请按照配置情况自行修改。  
+
+3.  执行deploy脚本， 进行配置参数调整及第三方库下载编译 打开Mind Studio工具的Terminal，此时默认在代码主目录下，执行如下命令在后台指执行deploy脚本，进行环境部署。如[图 执行deploy脚本](#zh-cn_topic_0228461725_zh-cn_topic_0219108795_fig63536151461)所示。
+
+    **图 3**  执行deploy脚本<a name="zh-cn_topic_0228461725_zh-cn_topic_0219108795_fig63536151461"></a>  
+    ![](figures/执行deploy脚本.png "执行deploy脚本")
+
+    >![](public_sys-resources/icon-note.gif) **说明：**   
+    >-   首次deploy时，没有部署第三方库时会自动下载并编译，耗时可能比较久，请耐心等待。后续再重新编译时，不会重复下载编译，部署如上图所示。  
+    >-   deploy时，需要选择与开发板通信的主机侧ip，一般为虚拟网卡配置的ip。如果此ip和开发板ip属于同网段，则会自动选择并部署。如果非同网段，则需要手动输入与开发板通信的主机侧ip才能完成deploy。  
+
+4.  开始编译，打开Mindstudio工具，在工具栏中点击**Build \> Build \> Build-Configuration**。会在目录下生成build和run文件夹。
+
+    >![](public_sys-resources/icon-notice.gif) **须知：**   
+    >首次编译工程时，**Build \> Build**为灰色不可点击状态。需要点击**Build \> Edit Build Configuration**，配置编译参数后再进行编译。  
+
+5.  将需要上色的图片上传至Host侧任一属组为HwHiAiUser用户的目录。
+
+## 运行<a name="zh-cn_topic_0228461725_section1620073406"></a>
+
+1.  在Mindstudio工具的工具栏中找到Run按钮，点击  **Run \> Run 'sample-colorization’**，如[图 程序已执行示意图](#zh-cn_topic_0228461725_zh-cn_topic_0219108795_fig18918132273612)所示，可执行程序已经在开发板执行。
+
+    **图 4**  程序已执行示意图<a name="zh-cn_topic_0228461725_zh-cn_topic_0219108795_fig18918132273612"></a>  
+    ![](figures/程序已执行示意图.png "程序已执行示意图")
+
+    以上报错信息请忽略，因为Mind Studio无法为可执行程序传参，上述步骤是将可执行程序与依赖的库文件部署到开发者板，此步骤需要ssh登录到开发者板至相应的目录文件下手动执行，具体请参考以下步骤。
+
+2.  在Mind Studio所在Ubuntu服务器中，以HwHiAiUser用户SSH登录到Host侧。
 
     **ssh HwHiAiUser@**_host\_ip_
 
     对于Atlas 200 DK，host\_ip默认为192.168.1.2（USB连接）或者192.168.0.2（NIC连接）。
 
-    对于AI加速云服务器，host\_ip即为当前Mind Studio所在服务器的IP地址。
+3.  进入黑白图像上色应用的可执行文件所在路径。
 
-2.  进入colorization的可执行文件所在路径。
+    命令举例如下：
 
-    **cd \~/HIAI\_PROJECTS/ascend\_workspace/colorization/out**
+    **cd \~/HIAI\_PROJECTS/workspace\_mind\_studio/sample-colorization\_xxxxx/out**
 
-3.  执行应用程序。
+    >![](public_sys-resources/icon-note.gif) **说明：**   
+    >-   此路径中sample-colorization\_xxxxx的xxxxx是一串字母和数字的随机组合，每次重新编译运行时都会随机生成。  
 
-    执行**run\_colorization.py**脚本会将推理结果在执行终端直接打印显示。
+4.  执行应用程序。
+
+    执行**run\_colorization.py**脚本会将推理生成的图片保存至指定路径。
 
     命令示例如下所示：
 
-    **python3 run\_colorization.py -i \~/pics -o ./out**
+    **python3 run\_colorization.py -i \~/example.jpg -o ./out/**
 
     -   -i：输入图片的路径，可以是目录，表示当前目录下所有图片都作为输入；也可以指定具体图片。
-    -   -o：上色后的图片保存路径。
+    -   -o：上色后的图片保存路径
 
-
-## 依赖代码库下载<a name="zh-cn_topic_0219383618_section92241245122511"></a>
-
-将依赖的软件库下载到“sample-colorization/script“目录下。
-
-**表 2**  依赖代码库下载
-
-<a name="zh-cn_topic_0219383618_table193598342368"></a>
-<table><thead align="left"><tr id="zh-cn_topic_0219383618_row1335913343368"><th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.1"><p id="zh-cn_topic_0219383618_p235913463620"><a name="zh-cn_topic_0219383618_p235913463620"></a><a name="zh-cn_topic_0219383618_p235913463620"></a>模块名称</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.2"><p id="zh-cn_topic_0219383618_p15359143483614"><a name="zh-cn_topic_0219383618_p15359143483614"></a><a name="zh-cn_topic_0219383618_p15359143483614"></a>模块描述</p>
-</th>
-<th class="cellrowborder" valign="top" width="33.33333333333333%" id="mcps1.2.4.1.3"><p id="zh-cn_topic_0219383618_p8359734133612"><a name="zh-cn_topic_0219383618_p8359734133612"></a><a name="zh-cn_topic_0219383618_p8359734133612"></a>下载地址</p>
-</th>
-</tr>
-</thead>
-<tbody><tr id="zh-cn_topic_0219383618_row436033423616"><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.1 "><p id="zh-cn_topic_0219383618_p63603349365"><a name="zh-cn_topic_0219383618_p63603349365"></a><a name="zh-cn_topic_0219383618_p63603349365"></a>EZDVPP</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.2 "><p id="zh-cn_topic_0219383618_p1360434113620"><a name="zh-cn_topic_0219383618_p1360434113620"></a><a name="zh-cn_topic_0219383618_p1360434113620"></a>对DVPP接口进行了封装，提供对图片/视频的处理能力。</p>
-</td>
-<td class="cellrowborder" valign="top" width="33.33333333333333%" headers="mcps1.2.4.1.3 "><p id="zh-cn_topic_0219383618_p63606348367"><a name="zh-cn_topic_0219383618_p63606348367"></a><a name="zh-cn_topic_0219383618_p63606348367"></a><a href="https://github.com/Atlas200dk/sdk-ezdvpp" target="_blank" rel="noopener noreferrer">https://github.com/Atlas200dk/sdk-ezdvpp</a></p>
-<p id="zh-cn_topic_0219383618_p5360133420366"><a name="zh-cn_topic_0219383618_p5360133420366"></a><a name="zh-cn_topic_0219383618_p5360133420366"></a>下载后请保持文件夹名称为ezdvpp。</p>
-</td>
-</tr>
-</tbody>
-</table>
 
